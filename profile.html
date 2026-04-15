@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Basic Brilliance | Modern Starter Page</title>
+  <!-- Google Fonts: clean sans-serif & subtle italics for elegance -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafcff;
+      color: #1a2c3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container utility */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* modern navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .nav-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1e3c72, #2b4f8c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: color 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #2b6a9f;
+    }
+
+    /* hero section */
+    .hero {
+      padding: 80px 0 70px;
+      text-align: center;
+      background: linear-gradient(145deg, #ffffff 0%, #f1f6fe 100%);
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #0f2b3d, #2c6e9e);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #2c4b66;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      border-radius: 48px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #1f6392;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-primary:hover {
+      background: #0f4a6f;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -8px rgba(31, 99, 146, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1f6392;
+      color: #1f6392;
+    }
+
+    .btn-outline:hover {
+      background: #eef4fc;
+      transform: translateY(-2px);
+    }
+
+    /* features section */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 56px;
+      color: #0e2a3b;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 28px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -14px rgba(0, 20, 40, 0.12);
+    }
+
+    .feature-icon {
+      font-size: 2.8rem;
+      color: #1f6392;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      color: #3a5b77;
+      font-size: 0.95rem;
+    }
+
+    /* about / info row */
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+      background: #eef3fc;
+      border-radius: 48px;
+      padding: 48px 40px;
+      margin-top: 20px;
+    }
+
+    .info-text {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .info-text h2 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .info-text p {
+      margin-bottom: 24px;
+      color: #2c4b66;
+    }
+
+    .info-stats {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 40px;
+      min-width: 130px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+    }
+
+    .stat-number {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #1f6392;
+    }
+
+    /* contact form */
+    .contact-card {
+      background: white;
+      border-radius: 48px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.08);
+      padding: 48px 40px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1e3a5f;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 28px;
+      transition: 0.2s;
+      background: #fefefe;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #1f6392;
+      box-shadow: 0 0 0 3px rgba(31, 99, 146, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .submit-btn {
+      background: #1f6392;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 48px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: #0e4b70;
+      transform: scale(0.98);
+    }
+
+    .form-message {
+      margin-top: 18px;
+      text-align: center;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 40px;
+      display: none;
+    }
+
+    /* footer */
+    footer {
+      background: #0b202f;
+      color: #bfd7e8;
+      padding: 48px 0 32px;
+      margin-top: 40px;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col p {
+      max-width: 260px;
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+
+    .footer-col h4 {
+      color: white;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: #bfd7e8;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 1.4rem;
+      margin-top: 12px;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #2a4a66;
+      padding-top: 28px;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .nav-flex {
+        flex-direction: column;
+      }
+      .info-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-card {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- sticky navigation -->
+<nav class="navbar">
+  <div class="container nav-flex">
+    <div class="logo"><i class="fas fa-code"></i> BasicSpark</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- hero section -->
+<section id="home" class="hero">
+  <div class="container">
+    <h1>Clean, modern & <br> genuinely basic</h1>
+    <p>Your perfect starting point — responsive layout, elegant components, and smooth interactions. No clutter, just essentials with a fresh touch.</p>
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#features" class="btn btn-outline">Explore <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- features section -->
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title">Core building blocks</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>Fully responsive</h3>
+        <p>Looks flawless on any device — from desktops to smartphones. Fluid grids and flexible media.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-palette"></i></div>
+        <h3>Modern aesthetics</h3>
+        <p>Soft shadows, gradient accents, and clean typography. Designed with readability in mind.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+        <h3>Easy to customize</h3>
+        <p>Straightforward HTML/CSS structure. Tweak colors, spacing, or content in minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- extra information row: stats / about -->
+<div class="container">
+  <div class="info-row">
+    <div class="info-text">
+      <h2>Built with simplicity</h2>
+      <p>This basic HTML document includes a flexible layout, modern navigation, and interactive form. Perfect for landing pages, portfolios, or learning purposes.</p>
+      <p><i class="fas fa-check-circle" style="color:#1f6392;"></i> Semantic HTML5 &nbsp;&nbsp; <i class="fas fa-css3-alt" style="color:#1f6392;"></i> CSS Grid/Flex &nbsp;&nbsp; <i class="fas fa-js"></i> Basic JS feedback</p>
+    </div>
+    <div class="info-stats">
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div>Responsive</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">Lightweight</div>
+        <div>Fast loading</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- contact section -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-card">
+      <h2 class="section-title" style="margin-bottom: 24px; text-align: left;">Drop a message</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name"><i class="far fa-user"></i> Full name</label>
+          <input type="text" id="name" name="name" placeholder="Alex Johnson" required>
+        </div>
+        <div class="form-group">
+          <label for="email"><i class="far fa-envelope"></i> Email address</label>
+          <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="message"><i class="far fa-comment-dots"></i> Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you think or ask a question..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send message <i class="fas fa-paper-plane"></i></button>
+        <div id="formFeedback" class="form-message"></div>
+      </form>
+      <p style="margin-top: 28px; font-size: 0.8rem; text-align: center; color: #5a7e9e;"><i class="fas fa-shield-alt"></i> Your data stays private — demo contact flow</p>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="container">
+    <div class="footer-flex">
+      <div class="footer-col">
+        <h3 style="color: white; font-weight: 700;">BasicSpark</h3>
+        <p>Simple, clean and functional HTML/CSS starter. No frameworks required — pure web essentials.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+        </div>
+        <p style="margin-top: 16px;">hello@basicspark.dev</p>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 BasicSpark — crafted with <i class="fas fa-heart" style="color: #ff8c8c;"></i> for clean web experiments.
+    </div>
+  </div>
+</footer>
+
+<!-- minimal JavaScript for form feedback and interactive alert -->
+<script>
+  (function() {
+    const form = document.getElementById('contactForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+
+    function showMessage(msg, isError = false) {
+      feedbackDiv.style.display = 'block';
+      feedbackDiv.textContent = msg;
+      feedbackDiv.style.backgroundColor = isError ? '#ffe6e5' : '#e3f6ed';
+      feedbackDiv.style.color = isError ? '#b13e3e' : '#1f6e4a';
+      feedbackDiv.style.border = `1px solid ${isError ? '#f3bfbf' : '#b8dfcc'}`;
+      // auto hide after 4 seconds
+      setTimeout(() => {
+        if (feedbackDiv) {
+          feedbackDiv.style.display = 'none';
+        }
+      }, 4000);
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+      
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
+      
+      if (!name) {
+        showMessage('❌ Please enter your name.', true);
+        nameInput.focus();
+        return;
+      }
+      if (!email) {
+        showMessage('❌ Email address is required.', true);
+        emailInput.focus();
+        return;
+      }
+      // simple email regex
+      const emailPattern = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+      if (!emailPattern.test(email)) {
+        showMessage('❌ Please provide a valid email address (e.g., name@domain.com).', true);
+        emailInput.focus();
+        return;
+      }
+      
+      // simulate success message
+      showMessage(`✨ Thanks ${name}! Your message has been received. We'll reply soon.`, false);
+      // reset form fields (optional)
+      form.reset();
+      // Also clear any residual focus styles
+      nameInput.blur();
+      emailInput.blur();
+      messageInput.blur();
+      
+      // you could also log to console for demo purposes
+      console.log(`📬 Form submitted: Name: ${name}, Email: ${email}, Msg: ${message}`);
+    });
+    
+    // additional small interactive effect: navbar link smooth scroll (native)
+    document.querySelectorAll('.nav-links a, .btn-group a[href^="#"], .footer-col a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if (hash && hash !== '#' && hash.startsWith('#')) {
+          const targetElement = document.querySelector(hash);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // update URL without jumping
+            history.pushState(null, null, hash);
+          }
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
